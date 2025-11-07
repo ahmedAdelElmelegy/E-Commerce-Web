@@ -1,0 +1,56 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:yt_ecommerce_admin_panel/data/repo/authentication/authentication_repository.dart';
+import 'package:yt_ecommerce_admin_panel/features/authentication/model/user_model.dart';
+import 'package:yt_ecommerce_admin_panel/utils/exceptions/firebase_auth_exceptions.dart';
+import 'package:yt_ecommerce_admin_panel/utils/exceptions/format_exceptions.dart';
+import 'package:yt_ecommerce_admin_panel/utils/exceptions/platform_exceptions.dart';
+
+class UserRepository extends GetxController {
+  static UserRepository get instance => Get.find();
+
+  final _db = FirebaseFirestore.instance;
+
+  // save user data
+  Future<void> saveUser(UserModel user) async {
+    try {
+      await _db.collection('users').doc(user.id).set(user.toJson());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong. Please try later";
+    }
+  }
+
+  // fetch admin detailes
+  Future<UserModel?> fetchAdminDetails() async {
+    try {
+      final doc = await _db
+          .collection('users')
+          .doc(AuthenticationRepository.instance.currentUser!.uid)
+          .get();
+
+      return UserModel.fromSnapshot(doc);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong. $e";
+    }
+  }
+}
