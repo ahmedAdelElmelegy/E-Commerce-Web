@@ -1,6 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:yt_ecommerce_admin_panel/common/widgets/layout/templates/side_templet.dart';
 import 'package:yt_ecommerce_admin_panel/routes/app_route.dart';
 import 'package:yt_ecommerce_admin_panel/routes/routes.dart';
@@ -40,127 +41,232 @@ class App extends StatelessWidget {
   }
 }
 
-class DashBoardScreen extends StatelessWidget {
-  const DashBoardScreen({super.key});
+// class DashBoardScreen extends StatelessWidget {
+//   const DashBoardScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    debugPrint(width.toString());
-    return const TSiteTemplate(
-      mobile: Mobile(),
-      tablet: Tablet(),
-      desktop: Desktop(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     final width = MediaQuery.of(context).size.width;
+//     debugPrint(width.toString());
+//     return const TSiteTemplate(
+//       mobile: Mobile(),
+//       tablet: Tablet(),
+//       desktop: Desktop(),
+//     );
+//   }
+// }
 
-class Tablet extends StatelessWidget {
-  const Tablet({super.key});
+// class Tablet extends StatelessWidget {
+//   const Tablet({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Tablet'),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Center(
+//       child: Text('Tablet'),
+//     );
+//   }
+// }
 
-class Mobile extends StatelessWidget {
-  const Mobile({super.key});
+// class Mobile extends StatelessWidget {
+//   const Mobile({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Mobile'),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Center(
+//       child: Text('Mobile'),
+//     );
+//   }
+// }
 
-class Desktop extends StatelessWidget {
-  const Desktop({super.key});
+// class Desktop extends StatelessWidget {
+//   const Desktop({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(30),
-        child: Center(
-          child: PaginatedDataTable2(
-            columnSpacing: 12,
-            minWidth: 786, //for mobile
-            dividerThickness: 0,
-            horizontalMargin: 12,
-            dataRowHeight: 56,
-            rowsPerPage: 12,
-            headingTextStyle: Theme.of(context).textTheme.titleMedium,
-            headingRowColor:
-                WidgetStateProperty.resolveWith((state) => TColors.white),
-            headingRowDecoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(TSizes.borderRadiusMd),
-                    topRight: Radius.circular(TSizes.borderRadiusMd))),
+//   @override
+//   Widget build(BuildContext context) {
+//     final DashboardController controller = Get.put(DashboardController());
 
-            showCheckboxColumn: true,
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         child: Padding(
+//           padding: const EdgeInsets.all(30),
+//           child: Center(
+//             child: Column(
+//               children: [
+//                 TextFormField(
+//                   controller: controller.searchController,
+//                   onChanged: (value) {
+//                     controller.searchQuery(value);
+//                   },
+//                   decoration: const InputDecoration(
+//                     border: OutlineInputBorder(),
+//                     hintText: 'Search',
+//                   ),
+//                 ),
+//                 const SizedBox(height: TSizes.spaceBtwSections),
+//                 Obx(
+//                   () => SizedBox(
+//                     height: 740,
+//                     child: Theme(
+//                       data: Theme.of(context).copyWith(
+//                           cardTheme: const CardThemeData(
+//                               color: Colors.white, elevation: 0)),
+//                       child: PaginatedDataTable2(
+//                         columnSpacing: 12,
+//                         minWidth: 786, //for mobile
+//                         dividerThickness: 0,
+//                         horizontalMargin: 12,
+//                         dataRowHeight: 56,
+//                         rowsPerPage: 5,
 
-            columns: const [
-              DataColumn2(
-                label: Text('Column 1'),
-                // numeric: true,
-              ),
-              DataColumn(label: Text('Column 2')),
-              DataColumn(label: Text('Column 3')),
-              DataColumn(label: Text('Column 4')),
-            ],
-            source: MyData(),
-          ),
-        ),
-      ),
-    );
-  }
-}
+//                         headingTextStyle:
+//                             Theme.of(context).textTheme.titleMedium,
+//                         headingRowColor: WidgetStateProperty.resolveWith(
+//                             (state) => TColors.primaryBackground),
+//                         headingRowDecoration: const BoxDecoration(
+//                             borderRadius: BorderRadius.only(
+//                                 topLeft: Radius.circular(TSizes.borderRadiusMd),
+//                                 topRight:
+//                                     Radius.circular(TSizes.borderRadiusMd))),
 
-class MyData extends DataTableSource {
-  final DashboardController controller = Get.put(DashboardController());
-  @override
-  DataRow? getRow(int index) {
-    return DataRow2(cells: [
-      DataCell(Text(controller.dataList[index]['Column 1'] ?? '')),
-      DataCell(Text(controller.dataList[index]['Column 2'] ?? '')),
-      DataCell(Text(controller.dataList[index]['Column 3'] ?? '')),
-      DataCell(Text(controller.dataList[index]['Column 4'] ?? '')),
-    ]);
-  }
+//                         showCheckboxColumn: true,
 
-  @override
-  bool get isRowCountApproximate => false;
+//                         // for pagination
+//                         showFirstLastButtons: true,
+//                         availableRowsPerPage: const [5, 10, 15],
+//                         onPageChanged: (page) {},
+//                         renderEmptyRowsInTheEnd: false,
+//                         onRowsPerPageChanged: (rowsPerPage) {},
+//                         // sorting
+//                         sortAscending: controller.sortAscending.value,
+//                         sortArrowAlwaysVisible: true,
+//                         sortColumnIndex: controller.sortColumnIndex.value,
+//                         sortArrowIcon: Icons.line_axis,
+//                         sortArrowBuilder: (ascending, sorted) {
+//                           if (sorted) {
+//                             return Icon(
+//                                 ascending
+//                                     ? Iconsax.arrow_up3
+//                                     : Iconsax.arrow_down,
+//                                 size: TSizes.iconSm);
+//                           }
+//                           return const Icon(Iconsax.arrow3,
+//                               size: TSizes.iconSm);
+//                         },
 
-  @override
-  int get rowCount => controller.dataList.length;
+//                         columns: [
+//                           const DataColumn2(
+//                             label: Text('Column 1'),
+//                             // numeric: true,
+//                           ),
+//                           const DataColumn(label: Text('Column 2')),
+//                           DataColumn(
+//                             label: const Text('Column 3'),
+//                             onSort: (columnIndex, ascending) {
+//                               controller.sortById(columnIndex, ascending);
+//                             },
+//                           ),
+//                           DataColumn(
+//                             label: const Text('Column 4'),
+//                             onSort: (columnIndex, ascending) {
+//                               controller.sortById(columnIndex, ascending);
+//                             },
+//                           ),
+//                         ],
+//                         source: MyData(controller: controller),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-  @override
-  int get selectedRowCount => 0;
-}
+// class MyData extends DataTableSource {
+//   final DashboardController controller;
 
-class DashboardController extends GetxController {
-  var dataList = <Map<String, dynamic>>[].obs;
-  @override
-  void onInit() {
-    fetchDummyData();
-    super.onInit();
-  }
+//   MyData({required this.controller});
+//   @override
+//   DataRow? getRow(int index) {
+//     return DataRow2(
+//         onTap: () {
+//           controller.selectedRow[index] = !controller.selectedRow[index];
+//           notifyListeners();
+//         },
+//         selected: controller.selectedRow[index],
+//         onSelectChanged: (value) {
+//           controller.selectedRow[index] = value ?? false;
+//           notifyListeners();
+//         },
+//         cells: [
+//           DataCell(Text(controller.dataList[index]['Column 1'] ?? '')),
+//           DataCell(Text(controller.dataList[index]['Column 2'] ?? '')),
+//           DataCell(Text(controller.dataList[index]['Column 3'] ?? '')),
+//           DataCell(Text(controller.dataList[index]['Column 4'] ?? '')),
+//         ]);
+//   }
 
-  void fetchDummyData() {
-    dataList.addAll(List.generate(
-        36,
-        (index) => {
-              'Column 1': 'Data   ${index + 1}-1',
-              'Column 2': 'Data  ${index + 1}-2',
-              'Column 3': 'Data  ${index + 1}-3',
-              'Column 4': 'Data  ${index + 1}-4',
-            }));
-  }
-}
+//   @override
+//   bool get isRowCountApproximate => false;
+
+//   @override
+//   int get rowCount => controller.dataList.length;
+
+//   @override
+//   int get selectedRowCount => 0;
+// }
+
+// class DashboardController extends GetxController {
+//   var dataList = <Map<String, dynamic>>[].obs;
+//   var filteredDataList = <Map<String, dynamic>>[].obs;
+//   RxList<bool> selectedRow = <bool>[].obs;
+//   TextEditingController searchController = TextEditingController();
+
+//   RxInt sortColumnIndex = 1.obs;
+//   RxBool sortAscending = true.obs;
+//   @override
+//   void onInit() {
+//     fetchDummyData();
+//     super.onInit();
+//   }
+
+//   void sortById(int columnIndex, bool ascending) {
+//     sortAscending.value = ascending;
+//     sortColumnIndex.value = columnIndex;
+
+//     dataList.sort((a, b) {
+//       var aValue = a['Column $columnIndex'].toString().toLowerCase();
+//       var bValue = b['Column $columnIndex'].toString().toLowerCase();
+
+//       return ascending ? aValue.compareTo(bValue) : bValue.compareTo(aValue);
+//     });
+
+//     // لازم نعمل refresh علشان GetX يعيد بناء الواجهة
+//     dataList.refresh();
+//   }
+
+// // search
+//   void searchQuery(String query) {
+//     filteredDataList.assignAll(dataList.where((e) =>
+//         e['Column 1'].toString().toLowerCase().contains(query.toLowerCase())));
+//   }
+
+//   void fetchDummyData() {
+//     selectedRow.assignAll(List.generate(36, (index) => false));
+//     dataList.addAll(List.generate(
+//         36,
+//         (index) => {
+//               'Column 1': 'Data   ${index + 1}-1',
+//               'Column 2': 'Data  ${index + 1}-2',
+//               'Column 3': 'Data  ${index + 1}-3',
+//               'Column 4': 'Data  ${index + 1}-4',
+//             }));
+//   }
+// }
 
 class FirstScreen extends StatelessWidget {
   const FirstScreen({super.key});

@@ -10,6 +10,12 @@ class SideBarController extends GetxController {
     activeItem.value = route;
   }
 
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   changeActiveItem(TRoutes.dashboard);
+  // }
+
   // change hover item
   void changeHoverItem(String route) {
     if (!isActive(route)) {

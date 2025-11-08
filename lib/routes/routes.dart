@@ -5,10 +5,8 @@ class TRoutes {
   static const home = '/home';
 
   static const dashboard = '/dashboard';
-  // static const products = '/products';
-  // static const categories = '/categories';
-  // static const orders = '/orders';
-  // static const users = '/users';
+
+  static const media = '/media';
 
   // static const register = '/register';
 
@@ -17,6 +15,7 @@ class TRoutes {
 
   static const sidBarMenuItem = [
     dashboard,
+    media,
     // products,
     // categories,
     // orders,

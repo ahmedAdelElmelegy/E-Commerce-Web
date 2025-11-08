@@ -42,14 +42,14 @@ class TSideBar extends StatelessWidget {
                           .bodySmall!
                           .apply(letterSpacingDelta: 1.2),
                     ),
-                    // const TMenuItem(
-                    //     title: 'Dashboard',
-                    //     icon: Iconsax.status,
-                    //     route: TRoutes.dashboard),
-                    // const TMenuItem(
-                    //     title: 'Media',
-                    //     icon: Iconsax.image,
-                    //     route: TRoutes.categories),
+                    const TMenuItem(
+                        title: 'Dashboard',
+                        icon: Iconsax.status,
+                        route: TRoutes.dashboard),
+                    const TMenuItem(
+                        title: 'Media',
+                        icon: Iconsax.picture_frame,
+                        route: TRoutes.media),
                     const TMenuItem(
                         title: 'Banners',
                         icon: Iconsax.picture_frame,

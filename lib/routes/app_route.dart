@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
-import 'package:yt_ecommerce_admin_panel/app.dart';
 import 'package:yt_ecommerce_admin_panel/features/authentication/screens/forget_password/forget_password.dart';
 import 'package:yt_ecommerce_admin_panel/features/authentication/screens/login/login.dart.dart';
 import 'package:yt_ecommerce_admin_panel/features/authentication/screens/reset_password/reset_password.dart';
+import 'package:yt_ecommerce_admin_panel/features/shop/screen/dashboard/dashboard.dart';
+import 'package:yt_ecommerce_admin_panel/features/media/screens/media.dart';
 import 'package:yt_ecommerce_admin_panel/routes/routes.dart';
 import 'package:yt_ecommerce_admin_panel/routes/routes_middle_ware.dart';
 
@@ -22,7 +23,12 @@ class TAppRoute {
     ),
     GetPage(
       name: TRoutes.dashboard,
-      page: () => const DashBoardScreen(),
+      page: () => const DashboardScreen(),
+      middlewares: [TRoutesMiddleWare()],
+    ),
+    GetPage(
+      name: TRoutes.media,
+      page: () => const MediaScreen(),
       middlewares: [TRoutesMiddleWare()],
     ),
   ];
