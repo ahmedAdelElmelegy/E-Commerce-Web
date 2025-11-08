@@ -7,10 +7,7 @@ import 'package:yt_ecommerce_admin_panel/firebase_options.dart';
 import 'app.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-/// Entry point of Flutter App
 Future<void> main() async {
-  // Ensure that widgets are initialized
-
   WidgetsFlutterBinding.ensureInitialized();
   // init local storage
   await GetStorage.init();
