@@ -65,12 +65,6 @@ class DashboardDesktopScreen extends StatelessWidget {
                 ),
               ],
             ),
-
-            SizedBox(
-              height: 300,
-              child: Image.network(
-                  'https://ecommerce.project-nami.xyz/storage/images/admins/sliders/plPIturqnd1718266850.png'),
-            )
           ],
         ),
       ),
